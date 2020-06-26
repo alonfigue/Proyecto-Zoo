@@ -487,7 +487,7 @@ public static void main(String[] args) {
 	    
         //parametros Anfibio
 	    System.out.print("Tipo de anfibio:");
-	    String tipoDeAnfibio = objetoZoo.nextLine();
+	    String tipoDeAnfibio = objetoZoo.next();
 		
         //parametros salamandra
 	    System.out.print("Venenoso (True o False):");
