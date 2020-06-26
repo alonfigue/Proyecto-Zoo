@@ -331,7 +331,20 @@ public static void main(String[] args) {
 	 
 			switch(eSelect) {
 			case 1:
-				inFlamenco(aves2, objetos2);
+				Flamenco gg = new Flamenco();
+				
+				Flamenco ff = new Flamenco();
+				gg = ff.inFlamenco();
+				
+				aves2.add(gg);
+				objetos2.add(gg);
+
+				int i;
+			    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
+			    for (i=0; i<objetos2.size() ; i++) {
+			    	System.out.println("Animal #"+(i+1)+"->"+objetos2.get(i));
+			    	
+			    }
 				break;
 			case 2:
 				inAvestruz(aves2, objetos2);
@@ -516,6 +529,7 @@ public static void main(String[] args) {
 
     //-Aves
     //Ingresar un objeto flamenco
+    /*
     public static Object inFlamenco(ArrayList<Ave> aves3,ArrayList<Object> objetos3) {
     	System.out.println("\n\t\t->Llenar el siguiente registro del animal nuevo para el ZOO.");
 	    Scanner objetoZoo = new Scanner(System.in);
@@ -567,7 +581,7 @@ public static void main(String[] args) {
 	    	
 	    }
         return flam;
-    }
+    }*/
     
   //Ingresar un objeto Avestruz
     public static Object inAvestruz(ArrayList<Ave> aves3,ArrayList<Object> objetos3) {
