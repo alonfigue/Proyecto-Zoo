@@ -196,27 +196,52 @@ public static void main(String[] args) {
 			int choice;
 			Scanner eleccion = new Scanner(System.in);
 			
+			System.out.println("*BIENVENIDO/A A LA APP DEL ZOO*\n\n\t\t->ELIGE UNA OPCION DEL MENU:\n1. Ver la clasificacion de los animales del ZOO\n2. Agregar un animal nuevo al ZOO\n3.salir");
+			System.out.print("\n->Opcion:");
+			
+			//Lectura de la "choice" introducida. input
+			choice = eleccion.nextInt(); 
+			
+			
 		do {
-		                    //Menu principal
-		System.out.println("*BIENVENIDO/A A LA APP DEL ZOO*\n\n\t\t->ELIGE UNA OPCION DEL MENU:\n1. Ver la clasificacion de los animales del ZOO\n2. Agregar un animal nuevo al ZOO");
-		System.out.print("\n->Opcion:");
-		
-		//Lectura de la "choice" introducida. input
-		choice = eleccion.nextInt(); 
+		 
         
 				switch(choice) {
 				case 1:
 					 //metodo lista
 					listaElec(anfibios,objetos,aves,mamiferos,reptiles);
+					int rechoice;
+					
+					System.out.println("*BIENVENIDO/A A LA APP DEL ZOO*\n\n\t\t->ELIGE UNA OPCION DEL MENU:\n1. Ver la clasificacion de los animales del ZOO\n2. Agregar un animal nuevo al ZOO\n3.salir");
+					System.out.print("\n->Opcion:");
+					
+					//Lectura de la "choice" introducida. input
+					Scanner elec = new Scanner(System.in);
+					rechoice = elec.nextInt(); 
+					choice = rechoice;
 					break;
 				case 2:
 					//metodo agregar animal nuevo
 					addAnimal(anfibios,objetos,aves,mamiferos,reptiles);
+					int rechoices;
+					
+					System.out.println("*BIENVENIDO/A A LA APP DEL ZOO*\n\n\t\t->ELIGE UNA OPCION DEL MENU:\n1. Ver la clasificacion de los animales del ZOO\n2. Agregar un animal nuevo al ZOO\n3.salir");
+					System.out.print("\n->Opcion:");
+					
+					//Lectura de la "choice" introducida. input
+					Scanner eleco = new Scanner(System.in);
+					rechoices = eleco.nextInt(); 
+					choice = rechoices;
+					break;
+				case 3:
 					break;
 					
-					default:			
+     			default:			
 				}	
-		}while(choice<1 || choice>2);
+				
+				
+				
+		}while(choice != 3);
 			
 		}
 	
