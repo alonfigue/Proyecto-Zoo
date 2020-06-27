@@ -76,8 +76,6 @@ public class Flamenco extends Ave implements Volar{
 	    flam.setPeriodoDeIncubacion(periodoDeIncubacion);
 	    flam.setVuela(vuela);
 	    flam.setNumPlumas(numPlumas);
-	     
-	    
 	    
         return flam;
     }

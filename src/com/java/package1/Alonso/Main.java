@@ -305,10 +305,38 @@ public static void main(String[] args) {
 			
 			switch(eSelect) {
 				case 1:
-					inRana(anfibios2, objetos2);
+					Rana ei = new Rana();
+					
+					Rana ou =new Rana();
+					ei = ou.inRana();
+										
+					anfibios2.add(ei);
+					objetos2.add(ei);
+
+					int i;
+				    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
+				    for (i=0; i<objetos2.size() ; i++) {
+				    	System.out.println("Animal #"+(i+1)+"->"+objetos2.get(i));
+				    }
 					break;
+				    
 				case 2:
-					inSalamandra(anfibios2, objetos2);
+					
+					Salamandra salm = new Salamandra();
+					
+					Salamandra dra = new Salamandra();
+					
+					salm = dra.inSalamandra();
+					
+					objetos2.add(salm);
+					anfibios2.add(salm);
+											
+					    int h;
+					    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
+					    for (h=0; h<objetos2.size() ; h++) {
+					    	System.out.println("Animal #"+(h+1)+"->"+objetos2.get(h));
+					    	
+					    }
 					break;
 							
 				default:
@@ -347,7 +375,19 @@ public static void main(String[] args) {
 			    }
 				break;
 			case 2:
-				inAvestruz(aves2, objetos2);
+				Avestruz uz = new Avestruz();
+				
+				Avestruz tr = new Avestruz();
+				uz = tr.inAvestruz();
+	
+				aves2.add(uz);
+				objetos2.add(uz);
+
+			    int a;
+			    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
+			    for (a=0; a<objetos2.size() ; a++) {
+			    	System.out.println("Animal #"+(a+1)+"->"+objetos2.get(a));
+			    }
 				break;
 						
 			default:
@@ -371,12 +411,35 @@ public static void main(String[] args) {
 	 
 			switch(eSelect) {
 			case 1:
-				inOrangutan(objetos2, mamiferos2);
+				Orangutan or = new Orangutan();
 				
+				Orangutan tan = new Orangutan();
+				or = tan.inOrangutan();
+				
+				
+				  objetos2.add(or);
+				  mamiferos2.add(or);
+				  
+				    int i;
+				    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
+				    for (i=0; i<objetos2.size() ; i++) {
+				    	System.out.println("Animal #"+(i+1)+"->"+objetos2.get(i));
+				    }
 				break;
 			case 2:
-				inJaguar(objetos2, mamiferos2);
+				Jaguar gu = new Jaguar();
+				
+				Jaguar jur = new Jaguar();
+				gu = jur.inJaguar();
 							
+			    objetos2.add(gu);
+			    mamiferos2.add(gu);
+			    
+			    int j;
+			    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
+			    for (j=0; j<objetos2.size() ; j++) {
+			    	System.out.println("Animal #"+(j+1)+"->"+objetos2.get(j));   	
+			    }
 				break;
 						
 			default:
@@ -399,20 +462,41 @@ public static void main(String[] args) {
 			
 			switch(eSelect) {
 				case 1:
-					inSerpiente(objetos2, reptiles2);
+					Serpiente nt = new Serpiente();
+					
+					Serpiente ent = new Serpiente();
+					nt = ent.inSerpiente();
+					
+				    objetos2.add(nt);
+				    reptiles2.add(nt);
+				    
+				    int i;
+				    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
+				    for (i=0; i<objetos2.size() ; i++) {
+				    	System.out.println("Animal #"+(i+1)+"->"+objetos2.get(i)+"\n");
+				    }
 					
 					break;
 				case 2:
+					Cocodrilo cd = new Cocodrilo ();
 					
-					inCocodrilo(objetos2, reptiles2);
+					Cocodrilo rl = new Cocodrilo();
 					
+					cd =rl.inCocodrilo();
+					
+				    objetos2.add(cd);
+				    reptiles2.add(cd);
+				    
+				    int c;
+				    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
+				    for (c=0; c<objetos2.size() ; c++) {
+				    	System.out.println("Animal #"+(c+1)+"->"+objetos2.get(c));				    	
+				    }			
 					break;
 							
 				default:
 				System.out.println("\n->Seleccione una opcion valida.");
-			
-			}
-			
+			}	
 			break;
 			
 			default:
@@ -420,468 +504,4 @@ public static void main(String[] args) {
 		}	
 	}
     
-    //Ya elegido el animal a ingresar al ZOO, se procede a almacenar los datos del mismo
-    //-Anfibios
-    
-    //Ingresar un objeto Rana
-    public static Object inRana(ArrayList<Anfibio> anfibios3,ArrayList<Object> objetos3) {
-    	System.out.println("\n\t\t->Llenar el siguiente registro del animal nuevo para el ZOO.");
-	    Scanner objetoZoo = new Scanner(System.in);
-	    
-        //parametros Animal
-	    System.out.print("\nNombre común del animal:");
- 	    String nombreComun = objetoZoo.nextLine();         
-		   
-	    System.out.print("Nombre cientifico:");
-        String nombreCientifico = objetoZoo.nextLine();
-      
-	    System.out.print("Genero del animal:");
-	    String genero = objetoZoo.nextLine();    
-		   
-	    System.out.print("Edad del animal:");
-	    int edad = objetoZoo.nextInt(); 
-	   
-	    System.out.print("Peso del animal (en Kg):");
-	    int peso = objetoZoo.nextInt(); 
-	    
-        //parametros Anfibio
-	    System.out.print("Tipo de anfibio:");
-	    String tipoDeAnfibio = objetoZoo.next();
-		
-        //parametros rana
-	    System.out.print("Color de Piel:");
-	    String colorDePiel = objetoZoo.next();
-	    
-	    System.out.print("Venenoso (True o False):");
-	    boolean venenoso = objetoZoo.nextBoolean();
-	    
-	    //crear e instanciar el objeto
-	    Rana rana = new Rana();
-	    rana.setNombreComun(nombreComun);
-	    rana.setNombreCientifico(nombreCientifico);
-	    rana.setGenero(genero);
-	    rana.setEdad(edad);
-	    rana.setPeso(peso);
-	    rana.setTipoDeAnfibio(tipoDeAnfibio);
-	    rana.setColorDePiel(colorDePiel);
-	    rana.setVenenosa(venenoso);
-	 
-	    objetos3.add(rana);
-	    anfibios3.add(rana);
-	    int i;
-	    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
-	    for (i=0; i<objetos3.size() ; i++) {
-	    	System.out.println("Animal #"+(i+1)+"->"+objetos3.get(i));
-	    	
-	    }
-        return rana;
-    }
-    
-  //Ingresar un objeto Salamandra
-    public static Object inSalamandra(ArrayList<Anfibio> anfibios3,ArrayList<Object> objetos3) {
-    	System.out.println("\n\t\t->Llenar el siguiente registro del animal nuevo para el ZOO.");
-	    Scanner objetoZoo = new Scanner(System.in);
-	    
-        //parametros Animal
-	    System.out.print("\nNombre común del animal:");
- 	    String nombreComun = objetoZoo.nextLine();          
-		   
-	    System.out.print("Nombre cientifico:");
-        String nombreCientifico = objetoZoo.nextLine();
-      
-	    System.out.print("Genero del animal:");
-	    String genero = objetoZoo.nextLine();    
-		   
-	    System.out.print("Edad del animal:");
-	    int edad = objetoZoo.nextInt(); 
-	   
-	    System.out.print("Peso del animal (en Kg):");
-	    int peso = objetoZoo.nextInt(); 
-	    
-        //parametros Anfibio
-	    System.out.print("Tipo de anfibio:");
-	    String tipoDeAnfibio = objetoZoo.next();
-		
-        //parametros salamandra
-	    System.out.print("Venenoso (True o False):");
-	    boolean venenoso = objetoZoo.nextBoolean();
-	    
-	    //crear e instanciar el objeto
-	    Salamandra salamandra = new Salamandra();
-	    salamandra.setNombreComun(nombreComun);
-	    salamandra.setNombreCientifico(nombreCientifico);
-	    salamandra.setGenero(genero);
-	    salamandra.setEdad(edad);
-	    salamandra.setPeso(peso);
-	    salamandra.setTipoDeAnfibio(tipoDeAnfibio);
-	    salamandra.setVenenosa(venenoso);
-	 
-	    objetos3.add(salamandra);
-	    anfibios3.add(salamandra);
-	    int i;
-	    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
-	    for (i=0; i<objetos3.size() ; i++) {
-	    	System.out.println("Animal #"+(i+1)+"->"+objetos3.get(i));
-	    	
-	    }
-        return salamandra;
-    }
-
-    //-Aves
-    //Ingresar un objeto flamenco
-    /*
-    public static Object inFlamenco(ArrayList<Ave> aves3,ArrayList<Object> objetos3) {
-    	System.out.println("\n\t\t->Llenar el siguiente registro del animal nuevo para el ZOO.");
-	    Scanner objetoZoo = new Scanner(System.in);
-	    
-        //parametros Animal
-	    System.out.print("\nNombre común del animal:");
- 	    String nombreComun = objetoZoo.nextLine();         
-		   
-	    System.out.print("Nombre cientifico:");
-        String nombreCientifico = objetoZoo.nextLine();
-      
-	    System.out.print("Genero del animal:");
-	    String genero = objetoZoo.nextLine();    
-		   
-	    System.out.print("Edad del animal:");
-	    int edad = objetoZoo.nextInt(); 
-	   
-	    System.out.print("Peso del animal (en Kg):");
-	    int peso = objetoZoo.nextInt(); 
-	    
-        //parametros aves
-	    System.out.print("Periodo de incubacion (en dias):");
-	    int periodoDeIncubacion = objetoZoo.nextInt();
-	    
-	    System.out.print("Vuela (true o false):");
-	    Boolean vuela = objetoZoo.nextBoolean();
-	    
-        //parametros flamenco
-	    System.out.print("Numero de plumas:");
-	    int numPlumas = objetoZoo.nextInt();
-	    
-	    //crear e instanciar el objeto
-	    Flamenco flam = new Flamenco();
-	    flam.setNombreComun(nombreComun);
-	    flam.setNombreCientifico(nombreCientifico);
-	    flam.setGenero(genero);
-	    flam.setEdad(edad);
-	    flam.setPeso(peso);
-	    flam.setPeriodoDeIncubacion(periodoDeIncubacion);
-	    flam.setVuela(vuela);
-	    flam.setNumPlumas(numPlumas);
-	     
-	    objetos3.add(flam);
-	    aves3.add(flam);
-	    int i;
-	    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
-	    for (i=0; i<objetos3.size() ; i++) {
-	    	System.out.println("Animal #"+(i+1)+"->"+objetos3.get(i));
-	    	
-	    }
-        return flam;
-    }*/
-    
-  //Ingresar un objeto Avestruz
-    public static Object inAvestruz(ArrayList<Ave> aves3,ArrayList<Object> objetos3) {
-    	System.out.println("\n\t\t->Llenar el siguiente registro del animal nuevo para el ZOO.");
-	    Scanner objetoZoo = new Scanner(System.in);
-	    
-        //parametros Animal
-	    System.out.print("\nNombre común del animal:");
- 	    String nombreComun = objetoZoo.nextLine();       
-		   
-	    System.out.print("Nombre cientifico:");
-        String nombreCientifico = objetoZoo.nextLine();
-      
-	    System.out.print("Genero del animal:");
-	    String genero = objetoZoo.nextLine();    
-		   
-	    System.out.print("Edad del animal:");
-	    int edad = objetoZoo.nextInt(); 
-	   
-	    System.out.print("Peso del animal (en Kg):");
-	    int peso = objetoZoo.nextInt(); 
-	    
-        //parametros Ave
-	    System.out.print("Periodo de incubacion (en dias):");
-	    int periodoDeIncubacion = objetoZoo.nextInt();
-	    
-	    System.out.print("Vuela (true o false):");
-	    Boolean vuela = objetoZoo.nextBoolean();
-		
-        //parametros salamandra
-	    System.out.print("Tamanio del cuello:");
-	    double tamanoCuello = objetoZoo.nextDouble();
-	    
-	    //crear e instanciar el objeto
-	    Avestruz avest = new Avestruz();
-	    avest.setNombreComun(nombreComun);
-	    avest.setNombreCientifico(nombreCientifico);
-	    avest.setGenero(genero);
-	    avest.setEdad(edad);
-	    avest.setPeso(peso);
-	    avest.setPeriodoDeIncubacion(periodoDeIncubacion);
-	    avest.setVuela(vuela);
-	    avest.setTamanoCuello(tamanoCuello);
-	 
-	    objetos3.add(avest);
-	    aves3.add(avest);
-	    int i;
-	    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
-	    for (i=0; i<objetos3.size() ; i++) {
-	    	System.out.println("Animal #"+(i+1)+"->"+objetos3.get(i));
-	    }
-        return avest;
-    }
-    
-    //-Mamiferos
-    //Ingresar un objeto Orangutan
-    public static Object inOrangutan(ArrayList<Object> objetos3,ArrayList<Mamifero> mamiferos3) {
-    	System.out.println("\n\t\t->Llenar el siguiente registro del animal nuevo para el ZOO.");
-	    Scanner objetoZoo = new Scanner(System.in);
-	    
-        //parametros Animal
-	    System.out.print("\nNombre común del animal:");
- 	    String nombreComun = objetoZoo.nextLine();          //input
-		   
-	    System.out.print("Nombre cientifico:");
-        String nombreCientifico = objetoZoo.nextLine();
-      
-	    System.out.print("Genero del animal:");
-	    String genero = objetoZoo.nextLine();    
-		   
-	    System.out.print("Edad del animal:");
-	    int edad = objetoZoo.nextInt(); 
-	   
-	    System.out.print("Peso del animal (en Kg):");
-	    int peso = objetoZoo.nextInt(); 
-	    
-        //parametros mamiferos    
-	    System.out.print("Alimento del animal:");
-	    String alimento = objetoZoo.next();
-		
-	    System.out.print("Periodo de lactancia (en dias):");
-	    int periodoDeLactancia = objetoZoo.nextInt();
-		
-	    System.out.print("En celo (true o false):");
-	    boolean enCelo = objetoZoo.nextBoolean();
-	    
-        //parametros orangutan
-	    System.out.print("Coeficiente intelectual del orangutan:");
-	    int iq = objetoZoo.nextInt();
-	    
-	    System.out.print("Con pareja (true o false):");
-	    boolean conPareja = objetoZoo.nextBoolean();
-	    
-	    //crear e instanciar el objeto
-	    Orangutan otan = new Orangutan();
-	    otan.setNombreComun(nombreComun);
-	    otan.setNombreCientifico(nombreCientifico);
-	    otan.setGenero(genero);
-	    otan.setEdad(edad);
-	    otan.setPeso(peso);
-	    otan.setAlimento(alimento);
-	    otan.setPeriodoDeLactancia(periodoDeLactancia);
-	    otan.setEnCelo(enCelo);
-	    otan.setIq(iq);
-	    otan.setConPareja(conPareja);
-	    
-	    objetos3.add(otan);
-	    mamiferos3.add(otan);
-	    int i;
-	    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
-	    for (i=0; i<objetos3.size() ; i++) {
-	    	System.out.println("Animal #"+(i+1)+"->"+objetos3.get(i));
-	    	
-	    }
-	return otan;    
-    }
-    
-    //Ingresar un objeto Jaguar
-    public static Object inJaguar(ArrayList<Object> objetos3,ArrayList<Mamifero> mamiferos3) {
-    	System.out.println("\n\t\t->Llenar el siguiente registro del animal nuevo para el ZOO.");
-	    Scanner objetoZoo = new Scanner(System.in);
-	    
-        //parametros Animal
-	    System.out.print("\nNombre común del animal:");
- 	    String nombreComun = objetoZoo.nextLine();          
-		   
-	    System.out.print("Nombre cientifico:");
-        String nombreCientifico = objetoZoo.nextLine();
-      
-	    System.out.print("Genero del animal:");
-	    String genero = objetoZoo.nextLine();    
-		   
-	    System.out.print("Edad del animal:");
-	    int edad = objetoZoo.nextInt(); 
-	   
-	    System.out.print("Peso del animal (en Kg):");
-	    int peso = objetoZoo.nextInt(); 
-	    
-        //parametros mamiferos
-	    System.out.print("Alimento del animal:");
-	    String alimento = objetoZoo.next();
-		
-	    System.out.print("Periodo de lactancia (en dias):");
-	    int periodoDeLactancia = objetoZoo.nextInt();
-		
-	    System.out.print("En celo (true o false):");
-	    boolean enCelo = objetoZoo.nextBoolean();
-	    
-        //parametros Jaguar
-	    System.out.print("Numero de manchas del jaguar:");
-	    int numManchas = objetoZoo.nextInt();
-	    
-	    System.out.print("Cantidad de dientes que tiene el jaguar:");
-	    int numDientes = objetoZoo.nextInt();
-	    
-	    //crear e instanciar el objeto
-	    Jaguar guar = new Jaguar();
-	    guar.setNombreComun(nombreComun);
-	    guar.setNombreCientifico(nombreCientifico);
-	    guar.setGenero(genero);
-	    guar.setEdad(edad);
-	    guar.setPeso(peso);
-	    guar.setAlimento(alimento);
-	    guar.setPeriodoDeLactancia(periodoDeLactancia);
-	    guar.setEnCelo(enCelo);
-	    guar.setNumManchas(numManchas);
-	    guar.setNumDientes(numDientes);
-	    
-	    objetos3.add(guar);
-	    mamiferos3.add(guar);
-	    int i;
-	    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
-	    for (i=0; i<objetos3.size() ; i++) {
-	    	System.out.println("Animal #"+(i+1)+"->"+objetos3.get(i));
-	    	
-	    }
-	return guar;    
-    }
-       
-      //-Reptiles
-      //Ingresar un objeto Cocodrilo
-    public static Object inCocodrilo(ArrayList<Object> objetos3,ArrayList<Reptil> reptiles3) {
-    	System.out.println("\n\t\t->Llenar el siguiente registro del animal nuevo para el ZOO.");
-   	    Scanner objetoZoo = new Scanner(System.in);
-   	    
-        //parametros Animal
-	    System.out.print("Nombre común del animal:");
- 	    String nombreComun = objetoZoo.nextLine();          
-		   
-	    System.out.print("Nombre cientifico:");
-        String nombreCientifico = objetoZoo.nextLine();
-      
-	    System.out.print("Genero del animal:");
-	    String genero = objetoZoo.nextLine();    
-		   
-	    System.out.print("Edad del animal:");
-	    int edad = objetoZoo.nextInt(); 
-	   
-	    System.out.print("Peso del animal (en Kg):");
-	    int peso = objetoZoo.nextInt(); 
-	    
-        //parametros Reptil    
-	    System.out.print("Periodo de incubacion (en dias):");
-	    int periodoDeIncubacion = objetoZoo.nextInt();
-		
-	    System.out.print("Patas (true o false):");
-	    boolean patas = objetoZoo.nextBoolean();
-		
-	    System.out.print("Escamas (true o false):");
-	    boolean escamas = objetoZoo.nextBoolean();
-	    
-        //parametros cocodrilo
-	    System.out.print("Largo de cola (en mts):");
-	    double largoDeCola = objetoZoo.nextDouble();
-	    
-	    //crear e instanciar el objeto
-	    Cocodrilo coco = new Cocodrilo();
-	    coco.setNombreComun(nombreComun);
-	    coco.setNombreCientifico(nombreCientifico);
-	    coco.setGenero(genero);
-	    coco.setEdad(edad);
-	    coco.setPeso(peso);
-	    coco.setPeriodoDeIncubacion(periodoDeIncubacion);
-	    coco.setPatas(patas);
-	    coco.setEscamas(escamas);
-	    coco.setLargoDeCola(largoDeCola);
-	    
-	    objetos3.add(coco);
-	    reptiles3.add(coco);
-	    int i;
-	    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
-	    for (i=0; i<objetos3.size() ; i++) {
-	    	System.out.println("Animal #"+(i+1)+"->"+objetos3.get(i));
-	    	
-	    }
-        return coco;
-    }
- 
-    //Ingresar un objeto Serpiente
-    public static Object inSerpiente(ArrayList<Object> objetos3,ArrayList<Reptil> reptiles3) {
-    	System.out.println("\n\t\t->Llenar el siguiente registro del animal nuevo para el ZOO.");
-   	    Scanner objetoZoo = new Scanner(System.in);
-       
-   	    //parametros Animal
-	    System.out.print("Nombre común del animal:");
- 	    String nombreComun = objetoZoo.nextLine();          //input
-		   
-	    System.out.print("Nombre cientifico:");
-        String nombreCientifico = objetoZoo.nextLine();
-      
-	    System.out.print("Genero del animal:");
-	    String genero = objetoZoo.nextLine();    
-		   
-	    System.out.print("Edad del animal:");
-	    int edad = objetoZoo.nextInt(); 
-	   
-	    System.out.print("Peso del animal (en Kg):");
-	    int peso = objetoZoo.nextInt(); 
-	    
-        //parametros Reptil
-	    System.out.print("Periodo de incubacion (en dias):");
-	    int periodoDeIncubacion = objetoZoo.nextInt();
-		
-	    System.out.print("Patas (true o false):");
-	    boolean patas = objetoZoo.nextBoolean();
-		
-	    System.out.print("Escamas (true o false):");
-	    boolean escamas = objetoZoo.nextBoolean();
-	    
-        //parametros serpiente
-	    System.out.print("Longitud de la serpiente (en metros):");
-	    double longitud = objetoZoo.nextDouble();
-	    
-	    System.out.print("Venenosa (true o false):");
-	    boolean venenosa = objetoZoo.nextBoolean();
-	    
-	    System.out.print("Color de la serpiente:");
-	    String color = objetoZoo.next();
-	    
-	    //crear e instanciar el objeto
-	    Serpiente serpiente = new Serpiente();
-	    serpiente.setNombreComun(nombreComun);
-	    serpiente.setNombreCientifico(nombreCientifico);
-	    serpiente.setGenero(genero);
-	    serpiente.setEdad(edad);
-	    serpiente.setPeso(peso);
-	    serpiente.setPeriodoDeIncubacion(periodoDeIncubacion);
-	    serpiente.setPatas(patas);
-	    serpiente.setEscamas(escamas);
-	    serpiente.setLongitud(longitud);
-	    serpiente.setVenenosa(venenosa);
-	    serpiente.setColor(color);
-	    
-	    objetos3.add(serpiente);
-	    reptiles3.add(serpiente);
-	    int i;
-	    System.out.println("\n-Lista de animales del ZOO hasta el momento:");
-	    for (i=0; i<objetos3.size() ; i++) {
-	    	System.out.println("Animal #"+(i+1)+"->"+objetos3.get(i)+"\n");
-	    }
-	return serpiente;    
-    }
 }
