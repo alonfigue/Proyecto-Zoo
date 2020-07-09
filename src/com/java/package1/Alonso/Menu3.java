@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -25,7 +27,7 @@ public class Menu3 extends JFrame {
 	
 		
 		setTitle("APP Zoo");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 522, 347);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -110,6 +112,8 @@ public class Menu3 extends JFrame {
 		btnNewButton_4.setFont(new Font("Arial Black", Font.BOLD, 14));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 				String msj = new String();
 				for(int i=0; i<objetos1.size(); i++) {
 					msj += "Animal #"+(i+1)+"->"+objetos1.get(i)+".\n\n";

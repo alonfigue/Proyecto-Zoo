@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -181,17 +182,47 @@ public class AddCocodrilo extends JFrame {
 				drilo.setNombreCientifico(ncien.getText());
 				drilo.setGenero(gen);
 				drilo.setEdad(Integer.parseInt(edad.getText()));
-				drilo.setPeso(Integer.parseInt(peso.getText()));
+				drilo.setPeso(Double.parseDouble(peso.getText()));
 				drilo.setPeriodoDeIncubacion(Integer.parseInt(inc.getText()));
 				drilo.setPatas(patas1.isSelected());
 				drilo.setEscamas(escamas1.isSelected());
 				drilo.setLargoDeCola(Double.parseDouble(cola.getText()));
 				
-				objetos1.add(drilo);
-				reptiles1.add(drilo);
+				try
+				{
+				//ingresar los datos en la tabla animal
+				Object[] obj = {drilo.getNombreComun(),drilo.getNombreCientifico(),drilo.getGenero(), drilo.getEdad(), drilo.getPeso()};
+				
+				DB db = DB.getInstances();
+				
+				db.dbPrepareStatement("insert into animal(\"nombreComun\", \"nombreCientifico\", genero, edad, peso, id_clase, id_tipo) values( ?, ?, ? , ?, ?,4,12)", obj);
+				//*******
+				
+				//obetener el id del animal
+				
+				int result;
+				String qr = "SELECT id FROM animal WHERE id=(SELECT max(id) FROM animal)";
+				result= db.dbStatementid(qr);
+				
+				
+				
+				//ingresar los datos en la tabla cocodrilo
+				Object[] coc = {drilo.getPeriodoDeIncubacion(),drilo.getEscamas(),drilo.getPatas(), drilo.getLargoDeCola()};
+				
+				
+				
+				db.dbPrepareStatementcoc("insert into cocodrilo(\"periodoDeIncubacion\", escamas, patas, \"largoDeCola\", id) values( ?, ?, ? , ?,"+result+")", coc);
+				//********
+				db.dbClose();
+				}
+				finally
+				{
+				
+				
 				
 				JOptionPane.showMessageDialog(null, "Animal Ingresado");
 				dispose();
+				}
 			     }
 				
 			}

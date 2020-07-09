@@ -144,14 +144,44 @@ public class AddSalamandra extends JFrame {
 				sala.setNombreCientifico(ncien.getText());
 				sala.setGenero(gen);
 				sala.setEdad(Integer.parseInt(edad.getText()));
-				sala.setPeso(Integer.parseInt(peso.getText()));
+				sala.setPeso(Double.parseDouble(peso.getText()));
 				sala.setTipoDeAnfibio(tipo.getText());
 				sala.setVenenosa(venenosa.isSelected());
 				
-				objetos1.add(sala);
-				anfibios1.add(sala);
+				try
+				{
+				//ingresar los datos en la tabla animal
+				Object[] obj = {sala.getNombreComun(),sala.getNombreCientifico(),sala.getGenero(), sala.getEdad(), sala.getPeso()};
+				
+				DB db = DB.getInstances();
+				
+				db.dbPrepareStatement("insert into animal(\"nombreComun\", \"nombreCientifico\", genero, edad, peso, id_clase, id_tipo) values( ?, ?, ? , ?, ?,5,5)", obj);
+				//*******
+				
+				//obetener el id del animal
+				
+				int result;
+				String qr = "SELECT id FROM animal WHERE id=(SELECT max(id) FROM animal)";
+				result= db.dbStatementid(qr);
+				
+				
+				
+				//ingresar los datos en la tabla salamandra
+				Object[] ste = {sala.getTipoDeAnfibio(),sala.getVenenosa()};
+				
+				
+				
+				db.dbPrepareStatementsala("insert into salamandra(\"tipoDeAnfibio\", venenosa, id) values( ?, ?,"+result+")", ste);
+				//********
+				db.dbClose();
+				}
+				finally
+				{
+				
+								
 				JOptionPane.showMessageDialog(null, "Animal Ingresado");
 				dispose();
+				}
 			    }
 			}
 		});

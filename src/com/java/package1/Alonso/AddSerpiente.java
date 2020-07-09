@@ -192,7 +192,7 @@ public class AddSerpiente extends JFrame {
 				te.setNombreCientifico(ncien.getText());
 				te.setGenero(gen);
 				te.setEdad(Integer.parseInt(edad.getText()));
-				te.setPeso(Integer.parseInt(peso.getText()));
+				te.setPeso(Double.parseDouble(peso.getText()));
 				te.setPeriodoDeIncubacion(Integer.parseInt(inc.getText()));
 				te.setPatas(patas1.isSelected());
 				te.setEscamas(escamas1.isSelected());
@@ -200,10 +200,40 @@ public class AddSerpiente extends JFrame {
 				te.setVenenosa(venenosa.isSelected());
 				te.setColor(color.getText());
 				
-				objetos1.add(te);
-				reptiles1.add(te);
+				try
+				{
+				//ingresar los datos en la tabla animal
+				Object[] obj = {te.getNombreComun(),te.getNombreCientifico(),te.getGenero(), te.getEdad(), te.getPeso()};
+				
+				DB db = DB.getInstances();
+				
+				db.dbPrepareStatement("insert into animal(\"nombreComun\", \"nombreCientifico\", genero, edad, peso, id_clase, id_tipo) values( ?, ?, ? , ?, ?,4,13)", obj);
+				//*******
+				
+				//obetener el id del animal
+				
+				int result;
+				String qr = "SELECT id FROM animal WHERE id=(SELECT max(id) FROM animal)";
+				result= db.dbStatementid(qr);
+				
+				
+				
+				//ingresar los datos en la tabla cocodrilo
+				Object[] ste = {te.getPeriodoDeIncubacion(),te.getEscamas(),te.getPatas(), te.getLongitud(), te.getVenenosa(), te.getColor()};
+				
+				//DB db = DB.getInstances();
+				
+				db.dbPrepareStatementste("insert into serpiente(\"periodoDeIncubacion\", escamas, patas, longitud, venenosa, \"color\", id) values( ?, ?, ? , ?, ?, ?,"+result+")", ste);
+				//********
+				db.dbClose();
+				}
+				finally
+				{
+				
+								
 				JOptionPane.showMessageDialog(null, "Animal Ingresado");
 				dispose();
+				}
 			    }
 			}
 		});

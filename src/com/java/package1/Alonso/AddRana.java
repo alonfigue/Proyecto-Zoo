@@ -157,15 +157,45 @@ public class AddRana extends JFrame {
 				rann.setNombreCientifico(ncien.getText());
 				rann.setGenero(gen);
 				rann.setEdad(Integer.parseInt(edad.getText()));
-				rann.setPeso(Integer.parseInt(peso.getText()));
+				rann.setPeso(Double.parseDouble(peso.getText()));
 				rann.setTipoDeAnfibio(tipo.getText());
 				rann.setColorDePiel(color.getText());
 				rann.setVenenosa(venenosa.isSelected());
 				
-				objetos1.add(rann);
-				anfibios1.add(rann);
+				try
+				{
+				//ingresar los datos en la tabla animal
+				Object[] obj = {rann.getNombreComun(),rann.getNombreCientifico(),rann.getGenero(), rann.getEdad(), rann.getPeso()};
+				
+				DB db = DB.getInstances();
+				
+				db.dbPrepareStatement("insert into animal(\"nombreComun\", \"nombreCientifico\", genero, edad, peso, id_clase, id_tipo) values( ?, ?, ? , ?, ?,5,5)", obj);
+				//*******
+				
+				//obetener el id del animal
+				
+				int result;
+				String qr = "SELECT id FROM animal WHERE id=(SELECT max(id) FROM animal)";
+				result= db.dbStatementid(qr);
+				
+				
+				
+				//ingresar los datos en la tabla rana
+				Object[] ste = {rann.getTipoDeAnfibio(),rann.getVenenosa(), rann.getColorDePiel()};
+				
+				
+				
+				db.dbPrepareStatementrann("insert into rana(\"tipoDeAnfibio\", venenosa,\"colorDePiel\", id) values( ?, ?, ?,"+result+")", ste);
+				//********
+				db.dbClose();
+				}
+				finally
+				{
+				
+								
 				JOptionPane.showMessageDialog(null, "Animal Ingresado");
 				dispose();
+				}
 			    }
 			}
 		});

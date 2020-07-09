@@ -53,6 +53,8 @@ public class AddAnfibio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				AddSalamandra salam = new AddSalamandra(anfibios1,objetos1);
 				salam.setVisible(true);
+				
+				dispose();
 			}
 		});
 		btnNewButton_1.setBounds(129, 163, 160, 40);

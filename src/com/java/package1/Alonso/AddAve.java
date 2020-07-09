@@ -22,7 +22,7 @@ public class AddAve extends JFrame {
 	 */
 	public AddAve(ArrayList<Object> objetos1,ArrayList<Ave> aves1) {
 		setTitle("APP Zoo");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 449, 277);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

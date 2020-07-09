@@ -22,7 +22,7 @@ public class Menu2 extends JFrame {
 	 */
 	public Menu2(ArrayList<Anfibio> anfibios1,ArrayList<Object> objetos1,ArrayList<Ave> aves1,ArrayList<Mamifero> mamiferos1,ArrayList<Reptil> reptiles1) {
 		setTitle("APP Zoo");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 522, 347);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

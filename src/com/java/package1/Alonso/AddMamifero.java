@@ -22,7 +22,7 @@ public class AddMamifero extends JFrame {
 	 */
 	public AddMamifero(ArrayList<Object> objetos1,ArrayList<Mamifero> mamiferos1) {
 		setTitle("APP Zoo");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

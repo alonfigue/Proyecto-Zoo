@@ -22,7 +22,7 @@ public class AddReptil extends JFrame {
 	 */
 	public AddReptil(ArrayList<Object> objetos1,ArrayList<Reptil> reptiles1) {
 		setTitle("APP Zoo");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 448, 271);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
