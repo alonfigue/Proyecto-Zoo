@@ -163,6 +163,93 @@ public class DB{
     	 }
      } 
 
+     
+     //preparedstament para orangutan
+     public void dbPrepareStatementgut(String query, Object[] obj) {
+    	 try {
+    		 this.pstmt = this.conn.prepareStatement(query);
+    		 this.pstmt.setString(1, (String) obj[0]);
+    		 this.pstmt.setInt(2, (int) obj[1]);
+    		 this.pstmt.setBoolean(3, (boolean) obj[2]);
+    		 this.pstmt.setInt(4, (int) obj[3]);
+    		 this.pstmt.setBoolean(5, (boolean) obj[4]);
+    		
+    		 
+    		 
+    		 this.pstmt.executeUpdate();
+    	 } catch (SQLException e) {
+    		 e.printStackTrace();
+    	 } finally {
+    		 try {
+    			 this.pstmt.close();
+    		 } catch (SQLException e) {
+    			 e.printStackTrace();
+    		 }
+    	 }
+     } 
+     
+     //preparedstament para jaguar
+     public void dbPrepareStatementgur(String query, Object[] obj) {
+    	 try {
+    		 this.pstmt = this.conn.prepareStatement(query);
+    		 this.pstmt.setString(1, (String) obj[0]);
+    		 this.pstmt.setInt(2, (int) obj[1]);
+    		 this.pstmt.setBoolean(3, (boolean) obj[2]);
+    		 this.pstmt.setInt(4, (int) obj[3]);
+    		 this.pstmt.setInt(5, (int) obj[4]);
+    		 
+    		 this.pstmt.executeUpdate();
+    	 } catch (SQLException e) {
+    		 e.printStackTrace();
+    	 } finally {
+    		 try {
+    			 this.pstmt.close();
+    		 } catch (SQLException e) {
+    			 e.printStackTrace();
+    		 }
+    	 }
+     } 
+     
+     //preparedstament para flamenco
+     public void dbPrepareStatementflamo(String query, Object[] obj) {
+    	 try {
+    		 this.pstmt = this.conn.prepareStatement(query);
+      		 this.pstmt.setInt(1, (int) obj[0]);
+    		 this.pstmt.setBoolean(2, (boolean) obj[1]);
+    		 this.pstmt.setInt(3, (int) obj[2]);
+    		
+    		 this.pstmt.executeUpdate();
+    	 } catch (SQLException e) {
+    		 e.printStackTrace();
+    	 } finally {
+    		 try {
+    			 this.pstmt.close();
+    		 } catch (SQLException e) {
+    			 e.printStackTrace();
+    		 }
+    	 }
+     } 
+     
+     //preparedstament para avestruz
+     public void dbPrepareStatementtz(String query, Object[] obj) {
+    	 try {
+    		 this.pstmt = this.conn.prepareStatement(query);
+      		 this.pstmt.setInt(1, (int) obj[0]);
+    		 this.pstmt.setBoolean(2, (boolean) obj[1]);
+    		 this.pstmt.setDouble(3, (double) obj[2]);
+    		
+    		 this.pstmt.executeUpdate();
+    	 } catch (SQLException e) {
+    		 e.printStackTrace();
+    	 } finally {
+    		 try {
+    			 this.pstmt.close();
+    		 } catch (SQLException e) {
+    			 e.printStackTrace();
+    		 }
+    	 }
+     } 
+     
      //obtener id
      public int dbStatementid(String query) {
     	 int a = 0;
@@ -184,6 +271,19 @@ public class DB{
             }
          return a;
          } 
+     
+     //metodo para imprimir
+     public ResultSet dbStatementimp(String query) {
+         try {
+         this.stmt = this.conn.createStatement();
+          this.rs = this.stmt.executeQuery(query);
+         
+        } catch (SQLException e) {
+            e.printStackTrace();
+            }
+         
+         return rs;
+         } 
 
      		//Metodo dbClose:
      public void dbClose() {
@@ -196,4 +296,3 @@ public class DB{
 	
      }
 	}
-

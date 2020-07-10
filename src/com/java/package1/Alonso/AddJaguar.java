@@ -36,7 +36,7 @@ public class AddJaguar extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddJaguar(ArrayList<Object> objetos1,ArrayList<Mamifero> mamiferos1) {
+	public AddJaguar() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 481, 444);
@@ -182,17 +182,46 @@ public class AddJaguar extends JFrame {
 				gur.setNombreCientifico(ncien.getText());
 				gur.setGenero(gen);
 				gur.setEdad(Integer.parseInt(edad.getText()));
-				gur.setPeso(Integer.parseInt(peso.getText()));
+				gur.setPeso(Double.parseDouble(peso.getText()));
 				gur.setAlimento((alimento.getText()));
 				gur.setPeriodoDeLactancia(Integer.parseInt(lactancia.getText()));
 				gur.setEnCelo(celo.isSelected());
 				gur.setNumManchas(Integer.parseInt(manchas.getText()));
 				gur.setNumDientes(Integer.parseInt(dientes.getText()));
 				
-				objetos1.add(gur);
-				mamiferos1.add(gur);
+
+				try
+				{
+				//ingresar los datos en la tabla animal
+				Object[] obj = {gur.getNombreComun(),gur.getNombreCientifico(), gur.getGenero(), gur.getEdad(), gur.getPeso()};
+				
+				DB db = DB.getInstances();
+				
+				db.dbPrepareStatement("insert into animal(\"nombreComun\", \"nombreCientifico\", genero, edad, peso, id_clase, id_tipo) values( ?, ?, ? , ?, ?,2,4)", obj);
+				//*******
+				
+				//obetener el id del animal
+				
+				int result;
+				String qr = "SELECT id FROM animal WHERE id=(SELECT max(id) FROM animal)";
+				result= db.dbStatementid(qr);
+				
+				
+				//ingresar los datos en la tabla jaguar
+				Object[] ste = {gur.getAlimento(), gur.getPeriodoDeLactancia(),gur.getEnCelo(), gur.getNumManchas(), gur.getNumDientes()};
+				
+	
+				
+				db.dbPrepareStatementgur("insert into jaguar(alimento, \"periodoDeLactancia\", \"enCelo\", \"numManchas\", \"numDientes\", id) values( ?, ?, ?, ?, ?,"+result+")", ste);
+				//********              
+				
+				}
+				finally
+				{
+				
 				JOptionPane.showMessageDialog(null, "Animal Ingresado");
 				dispose();
+				}
 			}
 		}
 		});

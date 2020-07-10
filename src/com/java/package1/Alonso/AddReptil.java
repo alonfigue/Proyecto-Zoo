@@ -20,7 +20,7 @@ public class AddReptil extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddReptil(ArrayList<Object> objetos1,ArrayList<Reptil> reptiles1) {
+	public AddReptil() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 448, 271);
@@ -38,7 +38,7 @@ public class AddReptil extends JFrame {
 		btnNewButton.setFont(new Font("Arial Black", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddSerpiente ste = new AddSerpiente(objetos1, reptiles1);
+				AddSerpiente ste = new AddSerpiente();
 				ste.setVisible(true);
 				
 				dispose();
@@ -51,7 +51,7 @@ public class AddReptil extends JFrame {
 		btnNewButton_1.setFont(new Font("Arial Black", Font.BOLD, 14));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddCocodrilo crl = new AddCocodrilo(objetos1, reptiles1);
+				AddCocodrilo crl = new AddCocodrilo();
 				crl.setVisible(true);
 				
 				dispose();

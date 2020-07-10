@@ -20,7 +20,7 @@ public class AddAnfibio extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddAnfibio(ArrayList<Anfibio> anfibios1,ArrayList<Object> objetos1) {
+	public AddAnfibio() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -38,7 +38,7 @@ public class AddAnfibio extends JFrame {
 		btnNewButton.setFont(new Font("Arial Black", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddRana rana = new AddRana(anfibios1,objetos1);
+				AddRana rana = new AddRana();
 				rana.setVisible(true);
 				
 				dispose();
@@ -51,7 +51,7 @@ public class AddAnfibio extends JFrame {
 		btnNewButton_1.setFont(new Font("Arial Black", Font.BOLD, 14));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddSalamandra salam = new AddSalamandra(anfibios1,objetos1);
+				AddSalamandra salam = new AddSalamandra();
 				salam.setVisible(true);
 				
 				dispose();

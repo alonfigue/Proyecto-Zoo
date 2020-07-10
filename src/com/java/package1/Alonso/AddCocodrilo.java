@@ -44,7 +44,7 @@ public class AddCocodrilo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddCocodrilo(ArrayList<Object> objetos1,ArrayList<Reptil> reptiles1) {
+	public AddCocodrilo() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 491, 421);
@@ -213,7 +213,7 @@ public class AddCocodrilo extends JFrame {
 				
 				db.dbPrepareStatementcoc("insert into cocodrilo(\"periodoDeIncubacion\", escamas, patas, \"largoDeCola\", id) values( ?, ?, ? , ?,"+result+")", coc);
 				//********
-				db.dbClose();
+				
 				}
 				finally
 				{

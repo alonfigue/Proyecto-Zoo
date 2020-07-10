@@ -20,7 +20,7 @@ public class AddMamifero extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddMamifero(ArrayList<Object> objetos1,ArrayList<Mamifero> mamiferos1) {
+	public AddMamifero() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -38,7 +38,7 @@ public class AddMamifero extends JFrame {
 		btnNewButton.setFont(new Font("Arial Black", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddOrangutan ngu = new AddOrangutan(objetos1, mamiferos1);
+				AddOrangutan ngu = new AddOrangutan();
 				ngu.setVisible(true);
 				
 				dispose();
@@ -51,7 +51,7 @@ public class AddMamifero extends JFrame {
 		btnNewButton_1.setFont(new Font("Arial Black", Font.BOLD, 14));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddJaguar ste = new AddJaguar(objetos1, mamiferos1);
+				AddJaguar ste = new AddJaguar();
 				ste.setVisible(true);
 				
 				dispose();

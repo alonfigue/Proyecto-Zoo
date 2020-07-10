@@ -38,7 +38,7 @@ public class AddSerpiente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddSerpiente(ArrayList<Object> objetos1,ArrayList<Reptil> reptiles1) {
+	public AddSerpiente() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 494, 469);
@@ -225,7 +225,7 @@ public class AddSerpiente extends JFrame {
 				
 				db.dbPrepareStatementste("insert into serpiente(\"periodoDeIncubacion\", escamas, patas, longitud, venenosa, \"color\", id) values( ?, ?, ? , ?, ?, ?,"+result+")", ste);
 				//********
-				db.dbClose();
+				
 				}
 				finally
 				{

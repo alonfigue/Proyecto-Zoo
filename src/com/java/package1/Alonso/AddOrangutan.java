@@ -36,7 +36,7 @@ public class AddOrangutan extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddOrangutan(ArrayList<Object> objetos1,ArrayList<Mamifero> mamiferos1) {
+	public AddOrangutan() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 487, 449);
@@ -179,19 +179,49 @@ public class AddOrangutan extends JFrame {
 				gut.setNombreCientifico(ncien.getText());
 				gut.setGenero(gen);
 				gut.setEdad(Integer.parseInt(edad.getText()));
-				gut.setPeso(Integer.parseInt(peso.getText()));
+				gut.setPeso(Double.parseDouble(peso.getText()));
 				gut.setAlimento((alimento.getText()));
 				gut.setPeriodoDeLactancia(Integer.parseInt(lactancia.getText()));
 				gut.setEnCelo(celo.isSelected());
 				gut.setIq(Integer.parseInt(iq.getText()));
 				gut.setConPareja(pareja.isSelected());
+
+				try
+				{
+				//ingresar los datos en la tabla animal
+				Object[] obj = {gut.getNombreComun(),gut.getNombreCientifico(),gut.getGenero(), gut.getEdad(), gut.getPeso()};
 				
-				objetos1.add(gut);
-				mamiferos1.add(gut);
+				DB db = DB.getInstances();
+				
+				db.dbPrepareStatement("insert into animal(\"nombreComun\", \"nombreCientifico\", genero, edad, peso, id_clase, id_tipo) values( ?, ?, ? , ?, ?,2,1)", obj);
+				//*******
+				
+				//obetener el id del animal
+				
+				int result;
+				String qr = "SELECT id FROM animal WHERE id=(SELECT max(id) FROM animal)";
+				result= db.dbStatementid(qr);
+				
+				
+				//ingresar los datos en la tabla orangutan
+				Object[] ste = {gut.getAlimento(), gut.getPeriodoDeLactancia(),gut.getEnCelo(), gut.getIq(), gut.getConPareja()};
+				
+	
+				
+				
+				db.dbPrepareStatementgut ("insert into orangutan(alimento, \"periodoDeLactancia\", \"enCelo\", iq, \"conPareja\", id) values( ?, ?, ?, ?, ?,"+result+")", ste);
+				//********
+				
+				}
+				finally
+				{
+				
+								
 				JOptionPane.showMessageDialog(null, "Animal Ingresado");
 				dispose();
 			    }
 			}
+		}
 		});
 		btnAgregar.setBounds(140, 365, 190, 32);
 		contentPane.add(btnAgregar);

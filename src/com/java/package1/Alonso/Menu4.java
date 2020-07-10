@@ -20,7 +20,7 @@ public class Menu4 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Menu4(ArrayList<Anfibio> anfibios1,ArrayList<Object> objetos1,ArrayList<Ave> aves1,ArrayList<Mamifero> mamiferos1,ArrayList<Reptil> reptiles1) {
+	public Menu4() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 518, 284);
@@ -37,7 +37,7 @@ public class Menu4 extends JFrame {
 		JButton btnNewButton = new JButton("1. Anfibio");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddAnfibio anf = new AddAnfibio(anfibios1,objetos1);
+				AddAnfibio anf = new AddAnfibio();
 				
 				dispose();
 			}
@@ -49,7 +49,7 @@ public class Menu4 extends JFrame {
 		JButton btnNewButton_1 = new JButton("2. Ave");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddAve ave = new AddAve(objetos1,aves1);
+				AddAve ave = new AddAve();
 				dispose();
 			}
 		});
@@ -60,7 +60,7 @@ public class Menu4 extends JFrame {
 		JButton btnNewButton_2 = new JButton("3. Mamifero");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddMamifero mamf = new AddMamifero(objetos1,mamiferos1);
+				AddMamifero mamf = new AddMamifero();
 			    dispose();
 			}
 		});
@@ -71,7 +71,7 @@ public class Menu4 extends JFrame {
 		JButton btnNewButton_3 = new JButton("4. Reptil");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddReptil rep = new AddReptil(objetos1,reptiles1);
+				AddReptil rep = new AddReptil();
 			    dispose();
 			}
 		});

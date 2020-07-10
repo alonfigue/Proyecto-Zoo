@@ -20,7 +20,7 @@ public class AddAve extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddAve(ArrayList<Object> objetos1,ArrayList<Ave> aves1) {
+	public AddAve() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 449, 277);
@@ -38,7 +38,7 @@ public class AddAve extends JFrame {
 		btnNewButton.setFont(new Font("Arial Black", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddFlamenco flama = new AddFlamenco(objetos1, aves1);
+				AddFlamenco flama = new AddFlamenco();
 				flama.setVisible(true);
 				
 				dispose();
@@ -51,7 +51,7 @@ public class AddAve extends JFrame {
 		btnNewButton_1.setFont(new Font("Arial Black", Font.BOLD, 14));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddAvestruz atr = new AddAvestruz(objetos1, aves1);
+				AddAvestruz atr = new AddAvestruz();
 				atr.setVisible(true);
 				
 				dispose();

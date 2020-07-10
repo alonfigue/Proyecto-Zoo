@@ -32,7 +32,7 @@ public class AddFlamenco extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddFlamenco(ArrayList<Object> objetos1,ArrayList<Ave> aves1) {
+	public AddFlamenco() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 468, 405);
@@ -155,16 +155,44 @@ public class AddFlamenco extends JFrame {
 				flamo.setNombreCientifico(ncien.getText());
 				flamo.setGenero(gen);
 				flamo.setEdad(Integer.parseInt(edad.getText()));
-				flamo.setPeso(Integer.parseInt(peso.getText()));
+				flamo.setPeso(Double.parseDouble(peso.getText()));
 				flamo.setPeriodoDeIncubacion(Integer.parseInt(inc.getText()));
 				flamo.setVuela(vuela.isSelected());
 				flamo.setNumPlumas(Integer.parseInt(pulmas.getText()));
 				
-				objetos1.add(flamo);
-				aves1.add(flamo);
+				try
+				{
+				//ingresar los datos en la tabla animal
+				Object[] obj = {flamo.getNombreComun(), flamo.getNombreCientifico(), flamo.getGenero(), flamo.getEdad(), flamo.getPeso()};
+				
+				DB db = DB.getInstances();
+				
+				db.dbPrepareStatement("insert into animal(\"nombreComun\", \"nombreCientifico\", genero, edad, peso, id_clase, id_tipo) values( ?, ?, ? , ?, ?,3,8)", obj);
+				//*******
+				
+				//obetener el id del animal
+				
+				int result;
+				String qr = "SELECT id FROM animal WHERE id=(SELECT max(id) FROM animal)";
+				result= db.dbStatementid(qr);
+				
+				
+				
+				//ingresar los datos en la tabla flamenco
+				Object[] ste = {flamo.getPeriodoDeIncubacion(), flamo.getVuela(), flamo.getNumPlumas()};
+				
+	
+				
+				db.dbPrepareStatementflamo("insert into flamenco(\"periodoDeIncubacion\", vuela, \"numPlumas\", id) values( ?, ?, ?,"+result+")", ste);
+				//********   
+				
+				}
+				finally
+				{
 				JOptionPane.showMessageDialog(null, "Animal Ingresado");
 				dispose();
 			    }
+			}
 			}
 		});
 		btnAgregar.setBounds(128, 323, 190, 32);

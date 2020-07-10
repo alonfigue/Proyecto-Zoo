@@ -32,7 +32,7 @@ public class AddSalamandra extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddSalamandra(ArrayList<Anfibio> anfibios1,ArrayList<Object> objetos1) {
+	public AddSalamandra() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 463, 372);
@@ -173,7 +173,7 @@ public class AddSalamandra extends JFrame {
 				
 				db.dbPrepareStatementsala("insert into salamandra(\"tipoDeAnfibio\", venenosa, id) values( ?, ?,"+result+")", ste);
 				//********
-				db.dbClose();
+				
 				}
 				finally
 				{

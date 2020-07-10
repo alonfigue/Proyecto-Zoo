@@ -34,7 +34,7 @@ public class AddRana extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddRana(ArrayList<Anfibio> anfibios1,ArrayList<Object> objetos1) {
+	public AddRana() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 466, 383);
@@ -187,7 +187,7 @@ public class AddRana extends JFrame {
 				
 				db.dbPrepareStatementrann("insert into rana(\"tipoDeAnfibio\", venenosa,\"colorDePiel\", id) values( ?, ?, ?,"+result+")", ste);
 				//********
-				db.dbClose();
+				
 				}
 				finally
 				{

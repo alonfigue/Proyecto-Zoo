@@ -24,7 +24,7 @@ public class Menu1 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Menu1(ArrayList<Anfibio> anfibios1,ArrayList<Object> objetos1,ArrayList<Ave> aves1,ArrayList<Mamifero> mamiferos1,ArrayList<Reptil> reptiles1) {
+	public Menu1() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 474, 301);
@@ -47,7 +47,7 @@ public class Menu1 extends JFrame {
 		btnNewButton.setFont(new Font("Arial Black", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Menu2 m2 = new Menu2(anfibios1,objetos1,aves1,mamiferos1,reptiles1);
+				Menu2 m2 = new Menu2();
 				
 				dispose();
 			}

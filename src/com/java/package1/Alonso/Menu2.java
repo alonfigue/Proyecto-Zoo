@@ -20,7 +20,7 @@ public class Menu2 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Menu2(ArrayList<Anfibio> anfibios1,ArrayList<Object> objetos1,ArrayList<Ave> aves1,ArrayList<Mamifero> mamiferos1,ArrayList<Reptil> reptiles1) {
+	public Menu2() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 522, 347);
@@ -33,7 +33,7 @@ public class Menu2 extends JFrame {
 		btnNewButton.setFont(new Font("Arial Black", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Menu3 print = new Menu3(anfibios1,objetos1,aves1,mamiferos1,reptiles1);
+				Menu3 print = new Menu3();
 				
 			}
 		});
@@ -44,7 +44,7 @@ public class Menu2 extends JFrame {
 		btnNewButton_1.setFont(new Font("Arial Black", Font.BOLD, 14));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Menu4 ad = new Menu4(anfibios1,objetos1,aves1,mamiferos1,reptiles1);
+				Menu4 ad = new Menu4();
 			}
 		});
 		btnNewButton_1.setBounds(342, 138, 105, 50);
@@ -55,6 +55,8 @@ public class Menu2 extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
+				DB db = DB.getInstances();
+				db.dbClose();
 			}
 		});
 		btnNewButton_2.setBounds(342, 218, 105, 50);

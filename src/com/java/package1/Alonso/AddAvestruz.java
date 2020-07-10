@@ -33,7 +33,7 @@ public class AddAvestruz extends JFrame {
 	 * Create the frame.
 	 */
 	
-	public AddAvestruz(ArrayList<Object> objetos1,ArrayList<Ave> aves1) {
+	public AddAvestruz() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 472, 386);
@@ -157,15 +157,40 @@ public class AddAvestruz extends JFrame {
 				tz.setNombreCientifico(ncien.getText());
 				tz.setGenero(gen);
 				tz.setEdad(Integer.parseInt(edad.getText()));
-				tz.setPeso(Integer.parseInt(peso.getText()));
+				tz.setPeso(Double.parseDouble(peso.getText()));
 				tz.setPeriodoDeIncubacion(Integer.parseInt(inc.getText()));
 				tz.setVuela(vuela.isSelected());
 				tz.setTamanoCuello(Double.parseDouble(cuello.getText()));
 				
-				objetos1.add(tz);
-				aves1.add(tz);
+				try
+				{
+				//ingresar los datos en la tabla animal
+				Object[] obj = {tz.getNombreComun(),tz.getNombreCientifico(),tz.getGenero(), tz.getEdad(), tz.getPeso()};
+				
+				DB db = DB.getInstances();
+				
+				db.dbPrepareStatement("insert into animal(\"nombreComun\", \"nombreCientifico\", genero, edad, peso, id_clase, id_tipo) values( ?, ?, ? , ?, ?,3,9)", obj);
+				//*******
+				
+				//obetener el id del animal
+				
+				int result;
+				String qr = "SELECT id FROM animal WHERE id=(SELECT max(id) FROM animal)";
+				result= db.dbStatementid(qr);
+				
+			
+				//ingresar los datos en la tabla avestruz
+				Object[] ste = {tz.getPeriodoDeIncubacion(), tz.getVuela(), tz.getTamanoCuello()};
+				
+				db.dbPrepareStatementtz("insert into avestruz(\"periodoDeIncubacion\", vuela, \"tamanoCuello\", id) values( ?, ?, ?,"+result+")", ste);
+				//********         
+				
+				}
+				finally
+				{
 				JOptionPane.showMessageDialog(null, "Animal Ingresado");
 				dispose();
+			}
 			}
 			}
 		});
