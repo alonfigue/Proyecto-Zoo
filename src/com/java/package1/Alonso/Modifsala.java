@@ -2,21 +2,22 @@ package com.java.package1.Alonso;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
-public class AddSalamandra extends JFrame {
+public class Modifsala extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField ncom;
@@ -28,11 +29,32 @@ public class AddSalamandra extends JFrame {
 	private JTextField color;
 	private JTextField venenosa;
 	private JLabel lblNewLabel_1;
+	private JTextField textField;
+
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public AddSalamandra() {
+	public Modifsala(ResultSet rs, int id) throws SQLException {
+		
+		Salamandra sa = new Salamandra();
+        
+		
+		while (rs.next()) {
+			sa.setNombreComun(rs.getString(2));
+			sa.setNombreCientifico(rs.getString(3));
+			sa.setGenero(rs.getString(4));
+			sa.setEdad(rs.getInt(5));
+			sa.setPeso(rs.getInt(6));
+			sa.setTipoDeAnfibio(rs.getString(7));
+			sa.setVenenosa(rs.getBoolean(8));
+			
+			
+			
+		}
+		System.out.print("esto es"+sa.getNombreComun());
+		
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 463, 372);
@@ -41,45 +63,54 @@ public class AddSalamandra extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		ncom = new JTextField();
+		ncom = new JTextField(sa.getNombreComun());
 		ncom.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		ncom.setBounds(208, 54, 168, 20);
 		contentPane.add(ncom);
 		ncom.setColumns(10);
 		
-		ncien = new JTextField();
+		ncien = new JTextField(sa.getNombreCientifico());
 		ncien.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		ncien.setBounds(208, 85, 168, 20);
 		contentPane.add(ncien);
 		ncien.setColumns(10);
 		
 		JRadioButton mach = new JRadioButton("macho");
+		if("macho".equals(sa.getGenero())) {
+			mach.setSelected(true);
+		}
 		mach.setBounds(208, 123, 86, 20);
 		contentPane.add(mach);
 		
 		JRadioButton hem = new JRadioButton("hembra");
+		if("hembra".equals(sa.getGenero())) {
+			hem.setSelected(true);
+		}
 		hem.setBounds(290, 123, 86, 20);
 		contentPane.add(hem);
 		
-		edad = new JTextField();
+		edad = new JTextField(String.valueOf(sa.getEdad()));
 		edad.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		edad.setBounds(208, 150, 86, 20);
 		contentPane.add(edad);
 		edad.setColumns(10);
 		
-		peso = new JTextField();
+		peso = new JTextField(String.valueOf(sa.getPeso()));
 		peso.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		peso.setBounds(208, 191, 86, 20);
 		contentPane.add(peso);
 		peso.setColumns(10);
 		
-		tipo = new JTextField();
+		tipo = new JTextField(sa.getTipoDeAnfibio());
 		tipo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		tipo.setBounds(208, 222, 86, 20);
 		contentPane.add(tipo);
 		tipo.setColumns(10);
 	
 		JRadioButton venenosa = new JRadioButton("");
+		if(sa.getVenenosa()==true) {
+			venenosa.setSelected(true);
+		}
 		venenosa.setBounds(208, 253, 86, 20);
 		contentPane.add(venenosa);
 		
@@ -118,7 +149,7 @@ public class AddSalamandra extends JFrame {
 		lblVenenosatrueOr.setBounds(35, 254, 148, 14);
 		contentPane.add(lblVenenosatrueOr);
 		
-		JButton btnAgregar = new JButton("Agregar Salamandra");
+		JButton btnAgregar = new JButton("Modificar");
 		btnAgregar.setFont(new Font("Arial Black", Font.PLAIN, 14));
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -155,15 +186,10 @@ public class AddSalamandra extends JFrame {
 				
 				DB db = DB.getInstances();
 				
-				db.dbPrepareStatement("insert into animal(\"nombreComun\", \"nombreCientifico\", genero, edad, peso, id_clase, id_tipo) values( ?, ?, ? , ?, ?,5,6)", obj);
+				db.dbPrepareStatement("UPDATE animal SET \"nombreComun\"=?, \"nombreCientifico\"=?, genero=?, edad=?, peso=? WHERE id="+id+";", obj);
 				//*******
 				
-				//obetener el id del animal
-				
-				int result;
-				String qr = "SELECT id FROM animal WHERE id=(SELECT max(id) FROM animal)";
-				result= db.dbStatementid(qr);
-				
+								
 				
 				
 				//ingresar los datos en la tabla salamandra
@@ -171,7 +197,7 @@ public class AddSalamandra extends JFrame {
 				
 				
 				
-				db.dbPrepareStatementsala("insert into salamandra(\"tipoDeAnfibio\", venenosa, id) values( ?, ?,"+result+")", ste);
+				db.dbPrepareStatementsala("UPDATE salamandra SET \"tipoDeAnfibio\"=?, venenosa=? WHERE id="+id+";",ste);
 				//********
 				
 				}
@@ -179,20 +205,37 @@ public class AddSalamandra extends JFrame {
 				{
 				
 								
-				JOptionPane.showMessageDialog(null, "Animal Ingresado");
+				JOptionPane.showMessageDialog(null, "Animal Modificado");
 				dispose();
 				}
 			    }
 			}
 		});
-		btnAgregar.setBounds(125, 290, 190, 32);
+		btnAgregar.setBounds(70, 290, 148, 32);
 		contentPane.add(btnAgregar);
 		
-		lblNewLabel_1 = new JLabel("Ingresar los datos de la nueva Salamandra:");
+		lblNewLabel_1 = new JLabel("Salamandra:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 19));
 		lblNewLabel_1.setBounds(10, 11, 427, 32);
 		contentPane.add(lblNewLabel_1);
 		
+		textField = new JTextField(String.valueOf(id));
+		textField.setEditable(false);
+		textField.setBounds(140, 21, 86, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
 		
+		JButton btnNewButton = new JButton("Abortar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnNewButton.setFont(new Font("Arial Black", Font.BOLD, 14));
+		btnNewButton.setBounds(239, 290, 137, 30);
+		contentPane.add(btnNewButton);
+		
+		setVisible(true);
 	}
+
 }

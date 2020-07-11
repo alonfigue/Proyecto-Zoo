@@ -272,6 +272,27 @@ public class DB{
          return a;
          } 
      
+     
+   //preparedstament para eliminar
+     public void dbPrepareStatementelim(int id) {
+    	 try {
+    		 String query ="DELETE FROM public.animal WHERE id=?;";
+    		 this.pstmt = this.conn.prepareStatement(query);
+      		 this.pstmt.setInt(1, (int) id);
+    		 
+    		
+    		 this.pstmt.executeUpdate();
+    	 } catch (SQLException e) {
+    		 e.printStackTrace();
+    	 } finally {
+    		 try {
+    			 this.pstmt.close();
+    		 } catch (SQLException e) {
+    			 e.printStackTrace();
+    		 }
+    	 }
+     }
+     
      //metodo para imprimir
      public ResultSet dbStatementimp(String query) {
          try {
@@ -284,6 +305,26 @@ public class DB{
          
          return rs;
          } 
+     
+     
+     //Metodo para obtener cocodrilos
+     public ResultSet dbStatementt(String query,int id) {
+    	 
+     try {
+    	 
+		 this.pstmt = this.conn.prepareStatement(query);
+  		 //this.pstmt.setInt(1, (int)id);
+  		 
+      this.rs = this.stmt.executeQuery(query);
+     
+    } catch (SQLException e) {
+        e.printStackTrace();
+        }
+     return rs;
+     } 
+     
+     
+     
 
      		//Metodo dbClose:
      public void dbClose() {

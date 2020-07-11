@@ -302,7 +302,7 @@ public class Menu3 extends JFrame {
 	                	a.printStackTrace();
 	                }
 				}
-				db.dbClose();
+				
 				
 				Imprimir pr = new Imprimir(msj);
 				dispose();
