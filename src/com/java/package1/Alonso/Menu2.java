@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import socket.client.alonso.ClientFrame;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ public class Menu2 extends JFrame {
 	public Menu2() {
 		setTitle("APP Zoo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 522, 347);
+		setBounds(100, 100, 522, 392);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -114,6 +117,19 @@ public class Menu2 extends JFrame {
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel_5.setBounds(54, 199, 233, 32);
 		contentPane.add(lblNewLabel_5);
+		
+		JButton btnNewButton_5 = new JButton("Chat");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ClientFrame a = new ClientFrame();
+				
+				
+			}
+		});
+		btnNewButton_5.setFont(new Font("Arial Black", Font.BOLD, 14));
+		btnNewButton_5.setBounds(172, 299, 128, 32);
+		contentPane.add(btnNewButton_5);
 		
 		setVisible(true);
 	}

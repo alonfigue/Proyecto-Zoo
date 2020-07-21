@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public class Sent implements Serializable{
 	
-	String mensaje, nick, ip, idAnimal;
+	String mensaje, nick, ip, idAnimal, mensajeAnimal;
 
 	public String getMensaje() {
 		return mensaje;
@@ -38,6 +38,7 @@ public class Sent implements Serializable{
 	public void setIdAnimal(String idAnimal) {
 		this.idAnimal = idAnimal;
 	}
+	
 	
 	
 

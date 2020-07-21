@@ -4,10 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.io.*;
 import java.net.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.java.package1.Alonso.DB;
+
 import javax.swing.*;
 
 import socket.client.alonso.Sent;
@@ -61,7 +66,7 @@ public class ServerFrame extends JFrame implements Runnable{
 			//Decimos que puerto va a escuchar
 			ServerSocket serv = new ServerSocket(3000);
 			
-			String nic, ip , mensaje, idAnimal;
+			String nic, ip , mensaje, idAnimal, ipOrigen;
 			
 			Sent recibido;
 			
@@ -80,9 +85,66 @@ public class ServerFrame extends JFrame implements Runnable{
 			ip = recibido.getIp();
 			mensaje = recibido.getMensaje();
 			idAnimal = recibido.getIdAnimal();
+			//ip del equipo de origen del mensaje
+			ipOrigen = miserv.getRemoteSocketAddress().toString();
+			
+			
+			int ini = ipOrigen.indexOf("/");
+			int fin = ipOrigen.indexOf(":");
+			String ipOrigen1 = ipOrigen.substring(ini + 1, fin);
+			
+			System.out.print(ipOrigen1);
 			
 			textArea.append("\n"+nic+" >> "+mensaje+" >> "+ip);
 			
+			//codigo para obtener datos del animal solicitado
+			if (!"".equals(idAnimal)) {
+				
+				DB db = DB.getInstances();
+				String query = "SELECT animal.id, animal.\"nombreComun\", animal.\"nombreCientifico\", animal.genero, animal.edad, animal.peso, \"claseAnimal\".nombreclase, \"tipoAnimal\".nombretipo FROM animal INNER JOIN public.\"tipoAnimal\" ON animal.id_tipo = \"tipoAnimal\".id_tipo INNER JOIN \"claseAnimal\" ON animal.id_clase = \"claseAnimal\".id_clase WHERE animal.id="+idAnimal+" ORDER BY id";
+				ResultSet rs = db.dbStatementimp(query);
+				String msj = new String();
+				try {
+					while (rs.next()) {
+						msj += "Id # "+rs.getInt(1)+" -> Nombre comun: "+rs.getString(2)+" /Nombre Cientifico: "+rs.getString(3)+" /Genero: "+rs.getString(4)+" /Edad: "+rs.getInt(5)+" /Peso: "+rs.getDouble(6)+" /Clase de Animal: "+rs.getString(7)+" /Tipo de Animal"+rs.getString(8)+".\n";
+					}
+					
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				finally {
+	                try {
+	                    rs.close();
+	                    
+	                } catch (SQLException a) {
+	                	a.printStackTrace();
+	                }
+				}
+					
+			
+				textArea.append(msj);
+				
+				Mensaje mess = new Mensaje();
+				
+				mess.setMsj(msj);
+				
+				//nuevo socket para enviar al destinatario final
+				Socket am = new Socket(ipOrigen1,3001);
+				
+				
+				//Genera un objeto stream para enviar el objeto con los datos
+				// utiliza el metodo getOutputStream para decirle al socket que el flujo de datos va a circular a traves 
+				 //de la direccion y puerto del socket creado.
+				 ObjectOutputStream respuesta = new ObjectOutputStream(am.getOutputStream());
+				 //envia el objeto al server
+				 respuesta.writeObject(mess);
+				 
+				 
+				respuesta.close();
+				 am.close();
+			}
 			
 			
 			//nuevo socket para enviar al destinatario final
@@ -97,7 +159,7 @@ public class ServerFrame extends JFrame implements Runnable{
 			 reenvio.writeObject(recibido);
 			
 			 
-			 reenvio.close();
+			 reenvio.close(); 
 			 destfinal.close();
 			 miserv.close();
 			

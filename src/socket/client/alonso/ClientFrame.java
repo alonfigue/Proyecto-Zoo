@@ -17,7 +17,11 @@ import java.net.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import socket.server.alonso.Mensaje;
+
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.Font;
@@ -43,7 +47,7 @@ public class ClientFrame extends JFrame implements Runnable {
 	
 	public ClientFrame() {
 		setTitle("Chat Cliente");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 320, 370);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -105,6 +109,10 @@ public class ClientFrame extends JFrame implements Runnable {
 		Thread hilo = new Thread(this);
 		hilo.start();
 		
+		HiloAnimal2 m = new HiloAnimal2(this);
+		m.start();
+		
+		
 		setVisible(true);
 	}
 	
@@ -129,7 +137,7 @@ public class ClientFrame extends JFrame implements Runnable {
 				 //envia el objeto al server
 				 out.writeObject(message);
 				 				 
-				 textArea.append("\n"+message.getNick()+" >> "+message.getMensaje()+" >> "+message.getIp());	
+				 textArea.append("\n Enviado:"+message.getNick()+" >> "+message.getMensaje()+" >> "+message.getIp());	
 				 
 					 // Cierra las conexiones
 					 System.out.println("Cerrando Conexion");
@@ -156,6 +164,8 @@ public class ClientFrame extends JFrame implements Runnable {
 			
 			Sent recibido;
 			
+			
+			
 			while(true) {
 				//se coloca un bluce infinito para que se cierre el socket y se vuelva a abrir con cada mensaje
 				//Acceptamos las conexiones por el puerto del socket
@@ -172,11 +182,67 @@ public class ClientFrame extends JFrame implements Runnable {
 				String mensaje = recibido.getMensaje();
 				String idAnimal = recibido.getIdAnimal();
 				
-				textArea.append("\n"+nic+" >> "+mensaje+" >> "+ip);
+				
+				
+				
+				textArea.append("\n Recibido:"+nic+" <> "+mensaje+" <> ");
+				
+												
+				
 			}
+			
+			
+			
 		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+	
+	private class HiloAnimal2 extends Thread{
+		
+		public HiloAnimal2(ClientFrame clientFrame) {
+			// TODO Auto-generated constructor stub
+		}
+
+		public void run() {
+			//escucha del puerto 3001
+			
+			ServerSocket mesageAnimal;
+			try {
+				mesageAnimal = new ServerSocket(3001);
+				
+				Socket sAnimal;
+				
+				Mensaje mRecibido;
+				
+				while(true) {
+					
+					
+					//Escucha del puerto 3001
+					sAnimal = mesageAnimal.accept();
+					
+					//Creamos un flujo de entrada de objeto
+					ObjectInputStream ent2 = new ObjectInputStream(sAnimal.getInputStream());
+					
+					
+					mRecibido = (Mensaje) ent2.readObject();
+					
+					String mensajeAnimal = mRecibido.getMsj();
+					
+					textArea.append("\n"+mensajeAnimal); 
+				}
+				
+			} catch (IOException | ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 		}
 	}
 }
